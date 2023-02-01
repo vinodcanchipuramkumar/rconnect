@@ -1,0 +1,20 @@
+[Unit]
+Description=Apache Tomcat Server
+After=network.target
+
+[Service]
+Type=forking
+Environment=JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+Environment=CATALINA_HOME=/u01/data/apache-tomcat-9.0.46
+Environment=CATALINA_BASE=/u01/data/apache-tomcat-9.0.46
+
+ExecStart=/u01/data/apache-tomcat-9.0.46/bin/startup.sh
+ExecStop=/u01/data/apache-tomcat-9.0.46/bin/shutdown.sh
+
+User={{vagrant}}
+Group={{vagrant}}
+RestartSec=20
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
